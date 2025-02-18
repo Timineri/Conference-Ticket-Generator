@@ -4,7 +4,7 @@ import Logo from "../assets/images/logo-full.svg";
 export default function FullLogo() {
   return (
     <header>
-      <img src={Logo} alt="full-logo" />
+      <img src={Logo} alt="full-logo" className="logo" />
     </header>
   );
 }

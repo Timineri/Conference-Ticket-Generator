@@ -15,21 +15,113 @@
   --Neutral-500: hsl(245, 15%, 58%);
   --Neutral-700: hsl(245, 19%, 35%);
   --Neutral-900: hsl(248, 70%, 10%);
-
   --Orange-500: hsl(7, 88%, 67%);
   --Orange-700: hsl(7, 71%, 60%);
-
   --Gradient-text: hsl(7, 86%, 67%) to hsl(0, 0%, 100%);
+  --Bg-Opacity: hsla(245, 19%, 35%, 0.5);
+  --Bg-Opacity-2: hsla(245, 15%, 58%, 0.5);
 }
 
 body {
   /* 3. Add accessible line-height */
   line-height: 1.5;
+
   /* 4. Improve text rendering */
   -webkit-font-smoothing: antialiased;
-  background-image: url(./assets/images/background-desktop.png);
+
   font-family: "Inconsolata";
   color: #fff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+/* General background container */
+.background-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* General Background */
+.bg-general {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("./assets/images/background-desktop.png");
+  background-size: cover;
+  background-position: center;
+  z-index: -5;
+}
+
+/* Squiggly Lines */
+.bg-squiggly {
+  position: absolute;
+  width: 150px;
+  height: auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.squiggly1 {
+  background-image: url("./assets/images/pattern-squiggly-line-top.svg");
+  top: 0;
+  right: 0;
+  width: 500px;
+  height: 300px;
+}
+
+.squiggly2 {
+  background-image: url("./assets/images/pattern-squiggly-line-bottom-desktop.svg");
+  bottom: 0;
+  left: 0;
+  width: 500px;
+  height: 240px;
+}
+
+/* Circles */
+.bg-circle {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-image: url("./assets/images/pattern-circle.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.circle1 {
+  top: -10%;
+  left: 0;
+  width: 500px;
+  height: 240px;
+  opacity: 0.5;
+}
+
+.circle2 {
+  top: 45%;
+  right: 5%;
+  width: 500px;
+  height: 240px;
+  opacity: 0.5;
+}
+
+/* Straight Lines */
+.bg-straight-line {
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  background-image: url("./assets/images/pattern-lines.svg");
+  background-size: cover;
+  opacity: 0.3;
+  top: 0;
+  pointer-events: none;
 }
 
 @font-face {
@@ -47,17 +139,29 @@ body {
   font-family: "Inconsolata-bold";
   src: url("./assets/fonts/static/Inconsolata-Bold.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Inconsolata-mediun";
+  src: url("./assets/fonts/static/Inconsolata-Medium.ttf") format("truetype");
+}
 
 h1 {
   font-family: "Inconsolata-ExtraBold";
   color: var(--Neutral-300);
+  text-align: center;
+  margin-bottom: 0.5em;
 }
 
 p {
   font-family: "Inconsolata-bold";
   color: var(--Neutral-500);
+  text-align: center;
+  margin-bottom: 1em;
 }
 
+label {
+  font-family: "Inconsolata-ExtraBold";
+  color: var(--Neutral-300);
+}
 /* 5. Improve media defaults */
 img,
 picture,
@@ -118,4 +222,48 @@ button {
 /* 11. Remove default list styles */
 ul {
   list-style: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+}
+
+.logo {
+  margin: auto;
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+}
+.upload {
+  border: 2px dashed var(--Neutral-500);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: var(--Bg-Opacity);
+  z-index: -1;
+}
+
+.upload-text {
+  color: var(--Neutral-500);
+}
+
+.upload-icon {
+  margin: auto;
+  background-color: var(--Bg-Opacity-2);
+  padding: 0.5em;
+  border-radius: 0.5em;
+  margin-bottom: 10px;
+  z-index: -1;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  border: 1px solid var(--Neutral-500);
+  border-radius: 0.5rem;
+  background-color: var(--Neutral-700);
+  opacity: 0.5;
 }
