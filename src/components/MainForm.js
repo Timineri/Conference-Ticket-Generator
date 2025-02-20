@@ -1,5 +1,6 @@
 import React from "react";
 import UploadIcon from "../assets/images/icon-upload.svg";
+import InfoIcon from "../assets/images/icon-info.svg";
 
 export default function MainForm() {
   return (
@@ -11,10 +12,14 @@ export default function MainForm() {
       <form>
         <label>
           Upload Avatar
-          <div className="upload">
+          <div className="upload" tabIndex={0}>
             <img className="upload-icon" src={UploadIcon} alt="upload" />
             <p className="upload-text">Drag and Drop or click to upload</p>
           </div>
+          <p className="upload-condition">
+            <img src={InfoIcon} alt="info-icon" className="info-icon" /> Upload
+            your photo (JPG or PNG, max size: 500KB).
+          </p>
         </label>
 
         <label>
@@ -24,12 +29,12 @@ export default function MainForm() {
 
         <label>
           Email Address
-          <input type="email" />
+          <input type="email" placeholder="example@email.com" />
         </label>
 
         <label>
           GitHub Username
-          <input type="text" />
+          <input type="text" placeholder="@yourusername" />
         </label>
 
         <div>
