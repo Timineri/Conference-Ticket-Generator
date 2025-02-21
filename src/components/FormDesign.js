@@ -2,7 +2,7 @@ import React from "react";
 import UploadIcon from "../assets/images/icon-upload.svg";
 import InfoIcon from "../assets/images/icon-info.svg";
 
-export default function MainForm() {
+export default function FormDesign() {
   return (
     <div>
       <h1>

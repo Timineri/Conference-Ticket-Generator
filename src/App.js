@@ -1,5 +1,6 @@
-import MainForm from "./components/MainForm";
-import FullLogo from "./components/FullLogo";
+// import FormDesign from "./components/FormDesign";
+import HeaderLogo from "./components/HeaderLogo";
+import TicketDesign from "./components/TicketDesign";
 
 function App() {
   return (
@@ -21,8 +22,9 @@ function App() {
 
         {/*Main Content*/}
         <div className="content">
-          <FullLogo />
-          <MainForm />
+          <HeaderLogo />
+          {/* <FormDesign /> */}
+          <TicketDesign />
         </div>
       </div>
     </div>
