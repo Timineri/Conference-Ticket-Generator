@@ -17,7 +17,7 @@
   --Neutral-900: hsl(248, 70%, 10%);
   --Orange-500: hsl(7, 88%, 67%);
   --Orange-700: hsl(7, 71%, 60%);
-  --Gradient-text: hsl(7, 86%, 67%) to hsl(0, 0%, 100%);
+  --Gradient-text: linear-gradient(90deg, hsl(7, 86%, 67%), hsl(0, 0%, 100%));
   --Bg-Opacity: hsla(245, 19%, 35%, 0.3);
   --Bg-Opacity-2: hsla(245, 15%, 58%, 0.3);
 }
@@ -155,6 +155,11 @@ h1 {
   color: var(--Neutral-300);
   text-align: center;
   margin-bottom: 0.4em;
+}
+
+h2 {
+  font-family: "Inconsolata-regular";
+  font-weight: 200;
 }
 
 p {
@@ -347,9 +352,76 @@ button:focus {
 
 .ticket-main {
   background-image: url(./assets/images/pattern-ticket.svg);
-  width: 78.9%;
+  width: 95%;
   height: 300px;
   background-repeat: no-repeat;
   margin: auto;
   margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5em;
+}
+
+.ticket-header-text {
+  font-size: 3em;
+}
+
+span.gradient-text {
+  background: var(--Gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.email-ticket {
+  color: var(--Neutral-300);
+  font-family: "Inconsolata-regular";
+  font-size: large;
+}
+.email {
+  text-decoration: none;
+  color: var(--Orange-700);
+}
+
+.ticket-logo {
+  width: 16em;
+}
+
+.avatar {
+  width: 70px;
+  border-radius: 1em;
+  margin-right: 0.7em;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  line-height: 2em;
+}
+
+.profile-github {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ticket-footer {
+  display: flex;
+  margin-bottom: 1em;
+}
+
+p.date-location {
+  text-align: left;
+  margin-left: 4.4em;
+  margin-top: 1em;
+  font-family: "Inconsolata-regular";
+  color: var(--Neutral-300);
+  font-size: small;
+  letter-spacing: 2px;
+}
+
+p.github-username {
+  text-align: left;
+  margin-bottom: 0px;
 }
