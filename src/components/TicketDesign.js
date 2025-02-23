@@ -3,18 +3,18 @@ import Logo from "../assets/images/logo-full.svg";
 import Avatar from "../assets/images/image-avatar.jpg";
 import GitHubLogo from "../assets/images/icon-github.svg";
 
-export default function TicketDesign() {
+export default function TicketDesign({ fullName, email, githubUsername }) {
   return (
     <div className="ticket-container">
       <div>
         <h1 className="ticket-header-text">
-          Congrats, <span className="gradient-text">Jonathan Kristof!</span>{" "}
-          <br /> Your ticket is ready.
+          Congrats, <span className="gradient-text">{fullName}!</span> <br />{" "}
+          Your ticket is ready.
         </h1>
         <p className="email-ticket">
           We've emailed your ticket to <br />{" "}
           <a href="/" className="email">
-            jonatan@email.com
+            {email}
           </a>{" "}
           and will send updates in <br /> the run up to the event
         </p>
@@ -28,10 +28,10 @@ export default function TicketDesign() {
               <img src={Avatar} alt="avatar" className="avatar" />
             </div>
             <div className="profile-info">
-              <h2>Jonathan Kristof</h2>
+              <h2>{fullName}</h2>
               <div className="profile-github">
                 <img src={GitHubLogo} alt="github-logo" />
-                <p className="github-username">@jonatankristoff0101</p>
+                <p className="github-username">{githubUsername}</p>
               </div>
             </div>
           </div>

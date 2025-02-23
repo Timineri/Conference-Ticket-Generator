@@ -1,8 +1,30 @@
-// import FormDesign from "./components/FormDesign";
+import { useState } from "react";
+import FormDesign from "./components/FormDesign";
 import HeaderLogo from "./components/HeaderLogo";
 import TicketDesign from "./components/TicketDesign";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("Home");
+  const [fullName, setFullName] = useState(" ");
+  const [email, setEmail] = useState(" ");
+  const [githubUsername, setGithubUsername] = useState("");
+
+  const handleGenerateTicket = () => {
+    return setCurrentPage("Ticket");
+  };
+
+  const handleFullName = (e) => {
+    setFullName(e.target.value);
+  };
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleGithubUsername = (e) => {
+    setGithubUsername(e.target.value);
+  };
+
   return (
     <div className="background-container">
       <div className="container">
@@ -23,8 +45,22 @@ function App() {
         {/*Main Content*/}
         <div className="content">
           <HeaderLogo />
-          {/* <FormDesign /> */}
-          <TicketDesign />
+          <div>
+            {currentPage === "Home" ? (
+              <FormDesign
+                handleFullName={handleFullName}
+                handleEmail={handleEmail}
+                handleGithubUsername={handleGithubUsername}
+                onGenerateTicket={handleGenerateTicket}
+              />
+            ) : (
+              <TicketDesign
+                fullName={fullName}
+                email={email}
+                githubUsername={githubUsername}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>

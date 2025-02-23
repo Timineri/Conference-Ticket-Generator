@@ -2,7 +2,12 @@ import React from "react";
 import UploadIcon from "../assets/images/icon-upload.svg";
 import InfoIcon from "../assets/images/icon-info.svg";
 
-export default function FormDesign() {
+export default function FormDesign({
+  handleFullName,
+  handleEmail,
+  handleGithubUsername,
+  onGenerateTicket,
+}) {
   return (
     <div>
       <h1>
@@ -24,21 +29,29 @@ export default function FormDesign() {
 
         <label>
           Full Name
-          <input type="text" />
+          <input type="text" onChange={handleFullName} />
         </label>
 
         <label>
           Email Address
-          <input type="email" placeholder="example@email.com" />
+          <input
+            type="email"
+            onChange={handleEmail}
+            placeholder="example@email.com"
+          />
         </label>
 
         <label>
           GitHub Username
-          <input type="text" placeholder="@yourusername" />
+          <input
+            type="text"
+            onChange={handleGithubUsername}
+            placeholder="@yourusername"
+          />
         </label>
 
         <div>
-          <button>Generate My Ticket</button>
+          <button onClick={onGenerateTicket}>Generate My Ticket</button>
         </div>
       </form>
     </div>
