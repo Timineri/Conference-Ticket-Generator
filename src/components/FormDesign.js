@@ -1,4 +1,5 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import UploadIcon from "../assets/images/icon-upload.svg";
 import InfoIcon from "../assets/images/icon-info.svg";
 
@@ -8,13 +9,26 @@ export default function FormDesign({
   handleGithubUsername,
   onGenerateTicket,
 }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onFormSubmit = (data) => {
+    console.log(data);
+    onGenerateTicket();
+  };
+  const onErrors = (errors) => {
+    console.log(errors);
+  };
   return (
     <div>
       <h1>
         Your Journey to Coding Conf <br /> 2025 Starts Here!
       </h1>
       <p>Secure your spot at next year's biggest coding conference</p>
-      <form>
+      <form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
         <label>
           Upload Avatar
           <div className="upload" tabIndex={0}>
@@ -29,13 +43,20 @@ export default function FormDesign({
 
         <label>
           Full Name
-          <input type="text" onChange={handleFullName} />
+          <input
+            type="text"
+            name="fullName"
+            {...register("fullName")}
+            onChange={handleFullName}
+          />
         </label>
 
         <label>
           Email Address
           <input
             type="email"
+            name="emailAddress"
+            {...register("emailAddress")}
             onChange={handleEmail}
             placeholder="example@email.com"
           />
@@ -45,13 +66,15 @@ export default function FormDesign({
           GitHub Username
           <input
             type="text"
+            name="githubUsername"
+            {...register("githubUsername")}
             onChange={handleGithubUsername}
             placeholder="@yourusername"
           />
         </label>
 
         <div>
-          <button onClick={onGenerateTicket}>Generate My Ticket</button>
+          <button type="submit">Generate My Ticket</button>
         </div>
       </form>
     </div>
