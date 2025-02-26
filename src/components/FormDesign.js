@@ -1,33 +1,36 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import UploadIcon from "../assets/images/icon-upload.svg";
 import InfoIcon from "../assets/images/icon-info.svg";
 
-export default function FormDesign({
-  handleFullName,
-  handleEmail,
-  handleGithubUsername,
-  onGenerateTicket,
-}) {
+export default function FormDesign({ onGenerateTicket }) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
+    // watch,
   } = useForm();
 
+  const navigate = useNavigate();
+
   const onFormSubmit = (data) => {
-    console.log(data);
+    navigate("/ticket", { state: { formData: data } });
     onGenerateTicket();
   };
+
   const onErrors = (errors) => {
     console.log(errors);
   };
+
   return (
     <div>
       <h1>
         Your Journey to Coding Conf <br /> 2025 Starts Here!
       </h1>
+
       <p>Secure your spot at next year's biggest coding conference</p>
+
       <form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
         <label>
           Upload Avatar
@@ -43,12 +46,7 @@ export default function FormDesign({
 
         <label>
           Full Name
-          <input
-            type="text"
-            name="fullName"
-            {...register("fullName")}
-            onChange={handleFullName}
-          />
+          <input type="text" name="fullName" {...register("fullName")} />
         </label>
 
         <label>
@@ -57,7 +55,6 @@ export default function FormDesign({
             type="email"
             name="emailAddress"
             {...register("emailAddress")}
-            onChange={handleEmail}
             placeholder="example@email.com"
           />
         </label>
@@ -68,7 +65,6 @@ export default function FormDesign({
             type="text"
             name="githubUsername"
             {...register("githubUsername")}
-            onChange={handleGithubUsername}
             placeholder="@yourusername"
           />
         </label>
