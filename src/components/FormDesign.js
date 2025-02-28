@@ -1,4 +1,5 @@
 import React from "react";
+import { ReactComponent as IconInfoColored } from "../assets/images/icon-info-colored.svg";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import UploadIcon from "../assets/images/icon-upload.svg";
@@ -8,7 +9,7 @@ export default function FormDesign({ onGenerateTicket }) {
   const {
     register,
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
     // watch,
   } = useForm();
 
@@ -21,6 +22,18 @@ export default function FormDesign({ onGenerateTicket }) {
 
   const onErrors = (errors) => {
     console.log(errors);
+  };
+
+  const ticketGenerationOptions = {
+    fullName: {
+      required: true,
+    },
+    emailAddress: {
+      required: "Please enter a valid email address",
+    },
+    githubUsername: {
+      required: true,
+    },
   };
 
   return (
@@ -46,7 +59,11 @@ export default function FormDesign({ onGenerateTicket }) {
 
         <label>
           Full Name
-          <input type="text" name="fullName" {...register("fullName")} />
+          <input
+            type="text"
+            name="fullName"
+            {...register("fullName", ticketGenerationOptions.fullName)}
+          />
         </label>
 
         <label>
@@ -54,9 +71,21 @@ export default function FormDesign({ onGenerateTicket }) {
           <input
             type="email"
             name="emailAddress"
-            {...register("emailAddress")}
+            {...register("emailAddress", ticketGenerationOptions.emailAddress)}
             placeholder="example@email.com"
+            className={`email-input ${errors.emailAddress ? "error" : ""}`}
           />
+          {errors.emailAddress && (
+            <p className="email-condition">
+              {" "}
+              <IconInfoColored
+                src={IconInfoColored}
+                alt="info-icon-email"
+                className="info-icon-email"
+              />
+              {errors.emailAddress.message}
+            </p>
+          )}
         </label>
 
         <label>
@@ -64,7 +93,10 @@ export default function FormDesign({ onGenerateTicket }) {
           <input
             type="text"
             name="githubUsername"
-            {...register("githubUsername")}
+            {...register(
+              "githubUsername",
+              ticketGenerationOptions.githubUsername
+            )}
             placeholder="@yourusername"
           />
         </label>

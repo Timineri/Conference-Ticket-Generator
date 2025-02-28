@@ -71,7 +71,7 @@ body {
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* General Background */
@@ -285,11 +285,19 @@ form {
   z-index: -1;
 }
 
-.info-icon {
+.info-icon,
+.info-icon-email {
   width: 1.3em;
 }
 
-.upload-condition {
+.info-icon-email {
+  fill: none;
+  stroke: var(--Orange-700);
+  stroke-width: 1px;
+}
+
+.upload-condition,
+.email-condition {
   text-align: left;
   font-size: x-small;
   display: flex;
@@ -297,14 +305,22 @@ form {
   gap: 1em;
 }
 
+.email-condition {
+  color: var(--Orange-700);
+}
+
 input {
   width: 100%;
   padding: 0.5rem;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   border: 1px solid var(--Neutral-500);
   border-radius: 0.5rem;
   background-color: var(--Bg-Opacity);
   color: var(--Neutral-300);
+}
+
+.email-input.error {
+  border: 1px solid var(--Orange-700);
 }
 
 input:hover {
