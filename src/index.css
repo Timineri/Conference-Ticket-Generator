@@ -262,6 +262,13 @@ form {
   z-index: -1;
 }
 
+.upload-file {
+  display: none;
+}
+
+/* .upload.error {
+  border: 1px solid var(--Orange-700);
+} */
 .upload:hover {
   background-color: var(--Neutral-700);
   cursor: pointer;
@@ -296,8 +303,9 @@ form {
   stroke-width: 1px;
 }
 
-.upload-condition,
-.email-condition {
+.upload-error,
+.upload-plain,
+.email-error {
   text-align: left;
   font-size: x-small;
   display: flex;
@@ -305,7 +313,8 @@ form {
   gap: 1em;
 }
 
-.email-condition {
+.upload-error,
+.email-error {
   color: var(--Orange-700);
 }
 
