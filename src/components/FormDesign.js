@@ -3,6 +3,7 @@ import { ReactComponent as IconInfoColored } from "../assets/images/icon-info-co
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import UploadIcon from "../assets/images/icon-upload.svg";
+import Avatar from "../assets/images/image-avatar.jpg";
 // import InfoIcon from "../assets/images/icon-info.svg";
 
 export default function FormDesign({ onGenerateTicket }) {
@@ -82,9 +83,14 @@ export default function FormDesign({ onGenerateTicket }) {
             name="imageUpload"
             onClick={handleDivClick}
           >
-            <img className="upload-icon" src={UploadIcon} alt="upload" />
+            {/* <img className="upload-icon" src={UploadIcon} alt="upload" />
 
-            <p className="upload-text">Drag and Drop or click to upload</p>
+            <p className="upload-text">Drag and Drop or click to upload</p> */}
+            <img className="upload-image" src={Avatar} alt="upload" />
+            <div className="upload-buttons">
+              <button className="remove-image">Remove Image</button>
+              <button className="change-image">Change Image</button>
+            </div>
           </div>
           <input
             type="file"
@@ -93,19 +99,19 @@ export default function FormDesign({ onGenerateTicket }) {
             {...register("imageUpload", ticketGenerationOptions.imageUpload)}
             onChange={handleFileChange}
           />
-          <p className={fileError ? "upload-error" : "upload-plain"}>
-            <IconInfoColored
-              src={IconInfoColored}
-              alt="info-icon-email"
-              className="info-icon-email"
-            />
-            {fileError ? (
-              <span>{fileError}</span>
-            ) : (
-              <span>Upload your photo (JPG or PNG, max size: 500KB).</span>
-            )}
-          </p>
         </label>
+        <p className={fileError ? "upload-error" : "upload-plain"}>
+          <IconInfoColored
+            src={IconInfoColored}
+            alt="info-icon-email"
+            className="info-icon-email"
+          />
+          {fileError ? (
+            <span>{fileError}</span>
+          ) : (
+            <span>Upload your photo (JPG or PNG, max size: 500KB).</span>
+          )}
+        </p>
 
         <label>
           Full Name

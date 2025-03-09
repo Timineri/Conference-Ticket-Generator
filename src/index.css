@@ -266,9 +266,6 @@ form {
   display: none;
 }
 
-/* .upload.error {
-  border: 1px solid var(--Orange-700);
-} */
 .upload:hover {
   background-color: var(--Neutral-700);
   cursor: pointer;
@@ -290,6 +287,41 @@ form {
   border-radius: 0.5em;
   margin-bottom: 10px;
   z-index: -1;
+}
+
+.upload-image {
+  width: 4em;
+  margin: auto;
+  border-radius: 1em;
+  border: 2px solid var(--Neutral-500);
+}
+
+.upload-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.remove-image,
+.change-image {
+  width: 8em;
+  font-size: x-small;
+  font-family: "Inconsolata-regular";
+  font-weight: lighter;
+  color: var(--Neutral-300);
+  background-color: var(--Bg-Opacity);
+  margin-bottom: 0;
+}
+
+.remove-image:hover,
+.change-image:hover {
+  cursor: pointer;
+  background-color: var(--Neutral-500);
+  text-decoration: underline;
+}
+
+.upload:hover:not(:has(.button:hover)) {
+  background-color: var(--Bg-Opacity);
 }
 
 .info-icon,
