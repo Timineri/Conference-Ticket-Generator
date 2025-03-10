@@ -3,12 +3,12 @@ import { ReactComponent as IconInfoColored } from "../assets/images/icon-info-co
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import UploadIcon from "../assets/images/icon-upload.svg";
-import Avatar from "../assets/images/image-avatar.jpg";
 // import InfoIcon from "../assets/images/icon-info.svg";
 
 export default function FormDesign({ onGenerateTicket }) {
   const [fileInputElement, setFileInputElement] = useState(null);
   const [fileError, setFileError] = useState("");
+  const [image, setImage] = useState(null);
 
   const {
     register,
@@ -37,13 +37,16 @@ export default function FormDesign({ onGenerateTicket }) {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
+    const imageUrl = URL.createObjectURL(file);
 
     if (file) {
       if (file.size > 500 * 1024) {
         setFileError("File too large. Please upload a photo under 500KB.");
         setValue("imageUpload", null);
+        setImage(null);
       } else {
         setFileError("");
+        setImage(imageUrl);
         setValue("imageUpload", event.target.files);
       }
     }
@@ -83,17 +86,24 @@ export default function FormDesign({ onGenerateTicket }) {
             name="imageUpload"
             onClick={handleDivClick}
           >
-            {/* <img className="upload-icon" src={UploadIcon} alt="upload" />
-
-            <p className="upload-text">Drag and Drop or click to upload</p> */}
-            <img className="upload-image" src={Avatar} alt="upload" />
-            <div className="upload-buttons">
-              <button className="remove-image">Remove Image</button>
-              <button className="change-image">Change Image</button>
-            </div>
+            {image ? (
+              <>
+                <img className="upload-image" src={image} alt="upload" />
+                <div className="upload-buttons">
+                  <button className="remove-image">Remove Image</button>
+                  <button className="change-image">Change Image</button>
+                </div>
+              </>
+            ) : (
+              <>
+                <img className="upload-icon" src={UploadIcon} alt="upload" />
+                <p className="upload-text">Drag and Drop or click to upload</p>
+              </>
+            )}
           </div>
           <input
             type="file"
+            accept="image/*"
             ref={(el) => setFileInputElement(el)}
             className="upload-file"
             {...register("imageUpload", ticketGenerationOptions.imageUpload)}
