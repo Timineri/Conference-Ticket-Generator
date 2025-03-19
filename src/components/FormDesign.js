@@ -22,11 +22,11 @@ export default function FormDesign({ onGenerateTicket }) {
 
   const onFormSubmit = (data) => {
     navigate("/ticket", { state: { formData: data } });
-    onGenerateTicket();
+    onGenerateTicket?.();
   };
 
   const onErrors = (errors) => {
-    console.log(errors);
+    console.error("Form errors:", errors);
   };
 
   const handleDivClick = () => {
@@ -37,17 +37,16 @@ export default function FormDesign({ onGenerateTicket }) {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    const imageUrl = URL.createObjectURL(file);
 
     if (file) {
       if (file.size > 500 * 1024) {
         setFileError("File too large. Please upload a photo under 500KB.");
-        setValue("imageUpload", null);
+        setValue("imageUpload", null, { shouldValidate: true });
         setImage(null);
       } else {
         setFileError("");
-        setImage(imageUrl);
-        setValue("imageUpload", event.target.files);
+        setValue("imageUpload", file, { shouldValidate: true });
+        setImage(URL.createObjectURL(file));
       }
     }
   };
@@ -55,6 +54,12 @@ export default function FormDesign({ onGenerateTicket }) {
   const ticketGenerationOptions = {
     imageUpload: {
       required: "File too large. Please upload a photo under 500KB.",
+      validate: (file) => {
+        if (!file) return "Please upload an image";
+        if (file.size > 500 * 1024)
+          return "File too large. Please upload a photo under 500KB.";
+        return true;
+      },
     },
     fullName: {
       required: true,
@@ -91,7 +96,12 @@ export default function FormDesign({ onGenerateTicket }) {
                 <img className="upload-image" src={image} alt="upload" />
                 <div className="upload-buttons">
                   <button className="remove-image">Remove Image</button>
-                  <button className="change-image">Change Image</button>
+                  <button
+                    className="change-image"
+                    onClick={() => setImage(null)}
+                  >
+                    Change Image
+                  </button>
                 </div>
               </>
             ) : (
@@ -112,7 +122,7 @@ export default function FormDesign({ onGenerateTicket }) {
         </label>
         <p className={fileError ? "upload-error" : "upload-plain"}>
           <IconInfoColored
-            src={IconInfoColored}
+            // src={IconInfoColored}
             alt="info-icon-email"
             className="info-icon-email"
           />
@@ -127,7 +137,6 @@ export default function FormDesign({ onGenerateTicket }) {
           Full Name
           <input
             type="text"
-            name="fullName"
             {...register("fullName", ticketGenerationOptions.fullName)}
           />
         </label>
@@ -136,7 +145,6 @@ export default function FormDesign({ onGenerateTicket }) {
           Email Address
           <input
             type="email"
-            name="emailAddress"
             {...register("emailAddress", ticketGenerationOptions.emailAddress)}
             placeholder="example@email.com"
             className={`email-input ${errors.emailAddress ? "error" : ""}`}
@@ -145,7 +153,7 @@ export default function FormDesign({ onGenerateTicket }) {
             <p className="email-error">
               {" "}
               <IconInfoColored
-                src={IconInfoColored}
+                // src={IconInfoColored}
                 alt="info-icon-email"
                 className="info-icon-email"
               />
@@ -158,7 +166,6 @@ export default function FormDesign({ onGenerateTicket }) {
           GitHub Username
           <input
             type="text"
-            name="githubUsername"
             {...register(
               "githubUsername",
               ticketGenerationOptions.githubUsername

@@ -292,7 +292,7 @@ form {
 .upload-image {
   width: 4em;
   margin: auto;
-  border-radius: 1em;
+  border-radius: 0.7em;
   border: 2px solid var(--Neutral-500);
 }
 
