@@ -13,7 +13,7 @@ export default function FormDesign({ onGenerateTicket }) {
   const {
     register,
     handleSubmit,
-    setValue,
+    // setValue,
     formState: { errors },
     // watch,
   } = useForm();
@@ -41,11 +41,11 @@ export default function FormDesign({ onGenerateTicket }) {
     if (file) {
       if (file.size > 500 * 1024) {
         setFileError("File too large. Please upload a photo under 500KB.");
-        setValue("imageUpload", null, { shouldValidate: true });
+        // setValue("imageUpload", null, { shouldValidate: true });
         setImage(null);
       } else {
         setFileError("");
-        setValue("imageUpload", file, { shouldValidate: true });
+        // setValue("imageUpload", file, { shouldValidate: true });
         setImage(URL.createObjectURL(file));
       }
     }
