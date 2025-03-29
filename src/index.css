@@ -63,14 +63,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
 }
 
 /* General background container */
 .background-container {
   position: relative;
-  width: 100%;
-  height: 100vh;
+  overflow: auto;
+  min-height: 100vh;
   /* overflow: hidden; */
 }
 
@@ -402,26 +401,10 @@ button:focus {
 }
 
 .ticket-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.ticket-main {
-  background-image: url(./assets/images/pattern-ticket.svg);
-  width: 95%;
-  height: 300px;
-  background-repeat: no-repeat;
-  margin: auto;
-  margin-top: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5em;
 }
 
 .ticket-header-text {
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 span.gradient-text {
@@ -440,6 +423,35 @@ span.gradient-text {
   color: var(--Orange-700);
 }
 
+.ticket-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  margin: auto;
+  background-image: url(./assets/images/pattern-ticket.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  height: 300px;
+}
+
+.ticket-main {
+  padding: 1.5em;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.ticket-footer,
+.ticket-header {
+  max-width: 300px;
+}
+
+.ticket-footer {
+  display: flex;
+  margin-bottom: 1em;
+}
+
 .ticket-logo {
   width: 16em;
 }
@@ -454,18 +466,15 @@ span.gradient-text {
   display: flex;
   flex-direction: column;
   justify-content: end;
-  line-height: 2em;
+}
+
+.profile-name {
 }
 
 .profile-github {
   display: flex;
   align-items: center;
   gap: 5px;
-}
-
-.ticket-footer {
-  display: flex;
-  margin-bottom: 1em;
 }
 
 p.date-location {
