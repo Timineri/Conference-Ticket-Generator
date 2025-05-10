@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import backgroundImage from "../assets/images/pattern-ticket.svg";
 import Logo from "../assets/images/logo-full.svg";
 import Avatar from "../assets/images/image-avatar.jpg";
 import GitHubLogo from "../assets/images/icon-github.svg";
@@ -28,24 +29,30 @@ export default function TicketDesign({
           and will send updates in <br /> the run up to the event
         </p>
 
-        <div className="ticket-wrapper">
-          <div className="ticket-main">
-            <div className="ticket-header">
-              <img src={Logo} alt="full-logo" className="ticket-logo" />
-              <p className="date-location">Jan 31, 2025 / Austin, TX</p>
-            </div>
-
-            <div className="ticket-footer">
-              <div>
-                <img src={Avatar} alt="avatar" className="avatar" />
+        <div>
+          <div className="ticket-wrapper">
+            <img
+              src={backgroundImage}
+              alt=""
+              className="background-ticket-image"
+            />
+            <div className="ticket-main">
+              <div className="ticket-header">
+                <img src={Logo} alt="full-logo" className="ticket-logo" />
+                <p className="date-location">Jan 31, 2025 / Austin, TX</p>
               </div>
 
-              <div className="profile-info">
-                <h2 className="profile-name">{formData.fullName}</h2>
+              <div className="ticket-footer">
+                <div>
+                  <img src={Avatar} alt="avatar" className="avatar" />
+                </div>
+                <div className="profile-info">
+                  <h2 className="profile-name">{formData.fullName}</h2>
 
-                <div className="profile-github">
-                  <img src={GitHubLogo} alt="github-logo" />
-                  <p className="github-username">{formData.githubUsername}</p>
+                  <div className="profile-github">
+                    <img src={GitHubLogo} alt="github-logo" />
+                    <p className="github-username">{formData.githubUsername}</p>
+                  </div>
                 </div>
               </div>
             </div>
